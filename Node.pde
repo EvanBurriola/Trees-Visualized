@@ -3,20 +3,26 @@ class Node{
   Node l;
   Node r;
   
+  //Parent needed to draw lines between nodes(could use child, just thought of that..)
   Node p;
   
   //Postion
   float x;
   float y;
-  float rad;
+  float diam;
   
+  //Display
+  int col = #ffffff;
+  
+  
+  //Most commonly used, then just manually set x/y attributes
   Node(int key){
     this.key = key;
     l = null;
     r = null;
     p = null;
     //Defaults
-    x = width/2; y = 50; rad = 25;
+    x = width/2; y = 50; diam = 25;
   }
   
   Node(int key, float x, float y){
@@ -25,15 +31,22 @@ class Node{
     r = null;
     
     //Defaults
-    this.x = x; this.y = y; rad = 25;
+    this.x = x; this.y = y; diam = 25;
+  }
+  
+  @Override
+  public String toString(){
+    return key + ": x = " + x + " y = " + y + "\n";
   }
   
   public void pos(float x, float y){
     this.x = x; this.y = y;
   }
   
-  public void rad(int rad){
-    this.rad = rad;
+  public void diam(int diam){
+    this.diam = diam;
   }
+  
+  
   
 }

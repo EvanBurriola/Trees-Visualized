@@ -1,5 +1,6 @@
 class BST{
   Node root;
+  ArrayList<Node> nodes = new ArrayList<>();
   
   BST(){
     this.root = null;
@@ -17,17 +18,16 @@ class BST{
       return find(x.r,targetKey);
   }
   
-  //Given a start node and a key to find
-  //Node grab(Node node, float targetX, float targetY){
-  //     //Circle hitbox
-  //     if(targetX >= (node.x - node.rad) && targetX <= (node.x + node.rad))
-  //       if(targetY >= (node.y - node.rad) && targetY <= (node.y + node.rad))
-  //         return node;
-
-             
-  //     //grab(node.l,targetX,targetY);
-  //     //grab(node.r,targetX,targetY);
-  //}  
+  
+  Node select(float targetX, float targetY){ 
+    for( Node node : nodes){
+      //Circle hitbox
+      if(sqrt(sq(node.x - targetX) + sq(node.y - targetY)) < node.diam/2){
+         return node;
+       }
+    }
+    return null;
+  }  
   
   
   //New nodes are inserted as leafs
@@ -39,13 +39,13 @@ class BST{
       if(root == null){ //Insert root (depth 0);
           Node newNode = new Node(key);
           root = newNode;
+          nodes.add(newNode);
           return true;
       }
       
       Node prev = null;
       Node cur = root;
       int depth = 0;
-      //this deviation will be bounded by the layers width
 
       Node newNode = new Node(key);
 
@@ -65,11 +65,6 @@ class BST{
       int prevLayerElems = int(pow(2,depth-1)); //Will always be int
       float prevSegmentWidth = (width)/prevLayerElems; //divide the width of the screen into equal parts for amnt of elems
       
-      //print(key + ":\n" + "  layerElems: " + prevLayerElems + "\n" + 
-      //"  layerPos: " + layerPos + "\n" + 
-      //"  medianDeviation: " + dev_from_med + "\n");
-      //newNode.x = segmentWidth*layerPos;
-      
       if(prev.key < key){
           prev.r = newNode;
           newNode.x = prev.x + prevSegmentWidth/4;
@@ -80,6 +75,7 @@ class BST{
       
       newNode.p = prev;
       
+      nodes.add(newNode);
       return true;
   }
   
@@ -88,18 +84,26 @@ class BST{
   }
   
   void out(Node node){
+    //in order recursive traversal
       if(node == null)
           return;
+          
       out(node.l);
-      //println(node.key);
+      
+      //Draw line between nodes
       if(node.p != null)
         line(node.x, node.y, node.p.x, node.p.y);  
-      fill(255);
-      circle(node.x,node.y,node.rad);
+        
+      //Draw circle for each node
+      fill(node.col);
+      circle(node.x,node.y,node.diam);
+      
+      // Display node key 
       fill(0);
       textSize(20);
       textAlign(CENTER);
       text(node.key,node.x,node.y+5);
+      
       out(node.r);
   }
   

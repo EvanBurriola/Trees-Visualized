@@ -1,6 +1,7 @@
 BST tree = new BST();
+Node selectedNode = null;
 void setup(){
-  size(1920, 1080);
+  size(720, 720);
   background(100);
   
   tree.insert(4);
@@ -19,5 +20,29 @@ void setup(){
 }
 
 void draw(){
+  background(100);
   tree.show();
+  if(selectedNode != null){
+    displaySelected();
+  }
+  
+}
+
+void mouseClicked(){
+  //Reset the previous selection
+  if(selectedNode != null){
+    selectedNode.col = #ffffff;
+  }
+  
+  selectedNode = tree.select(mouseX,mouseY);
+  if(selectedNode != null){
+    print(selectedNode.toString());
+    selectedNode.col = #68f5fc;
+  }else{
+  println("NULL");
+  }
+}
+
+void displaySelected(){
+ text(selectedNode.toString(), 100, 50);
 }
