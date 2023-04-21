@@ -22,7 +22,7 @@ class Node{
     r = null;
     p = null;
     //Defaults
-    x = width/2; y = 50; diam = 25;
+    x = width/2; y = 50; diam = 50;
   }
   
   Node(int key, float x, float y){
@@ -31,7 +31,7 @@ class Node{
     r = null;
     
     //Defaults
-    this.x = x; this.y = y; diam = 25;
+    this.x = x; this.y = y; diam = 50;
   }
   
   @Override

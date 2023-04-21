@@ -58,7 +58,7 @@ class BST{
         } else{
           cur = cur.r;
         }
-        newNode.y += 50 + (10*depth); //Increase in depth
+        newNode.y += 50; //Increase in depth
       }
       
       //Number of elements that this layer of the tree can contain
@@ -88,23 +88,23 @@ class BST{
       if(node == null)
           return;
           
-      out(node.l);
-      
       //Draw line between nodes
       if(node.p != null)
-        line(node.x, node.y, node.p.x, node.p.y);  
+        line(node.x, node.y, node.p.x, node.p.y); 
         
+      out(node.l);
+      out(node.r);
+      
+      //Drawn after lines and traversal to appear on top
       //Draw circle for each node
       fill(node.col);
       circle(node.x,node.y,node.diam);
       
       // Display node key 
       fill(0);
-      textSize(20);
+      textSize(node.diam/2);
       textAlign(CENTER);
       text(node.key,node.x,node.y+5);
-      
-      out(node.r);
   }
   
 

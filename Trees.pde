@@ -1,7 +1,7 @@
 BST tree = new BST();
 Node selectedNode = null;
 void setup(){
-  size(720, 720);
+  size(1280, 720);
   background(100);
   
   tree.insert(4);
@@ -13,9 +13,7 @@ void setup(){
   tree.insert(15);
   tree.insert(5);
   tree.insert(6);
-  tree.insert(7);
-  tree.insert(8);
-  tree.insert(9);
+  tree.insert(3);
   
 }
 
@@ -44,5 +42,5 @@ void mouseClicked(){
 }
 
 void displaySelected(){
- text(selectedNode.toString(), 100, 50);
+ text(selectedNode.toString(), 125, 50);
 }
