@@ -1,3 +1,7 @@
+//Evan Burriola : 2023
+//Processing 4.0b8
+//https://github.com/evanburriola12/trees-visualized
+
 BST tree = new BST();
 Node selectedNode = null;
 void setup(){

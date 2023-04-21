@@ -1,3 +1,7 @@
+//Evan Burriola : 2023
+//Processing 4.0b8
+//https://github.com/evanburriola12/trees-visualized
+
 class BST{
   Node root;
   ArrayList<Node> nodes = new ArrayList<>();
@@ -58,7 +62,7 @@ class BST{
         } else{
           cur = cur.r;
         }
-        newNode.y += 50; //Increase in depth
+        newNode.y += 50 + (10*depth); //Increase in depth
       }
       
       //Number of elements that this layer of the tree can contain
