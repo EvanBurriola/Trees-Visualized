@@ -3,6 +3,8 @@ class Node{
   Node l;
   Node r;
   
+  Node p;
+  
   //Postion
   float x;
   float y;
@@ -12,9 +14,9 @@ class Node{
     this.key = key;
     l = null;
     r = null;
-    
+    p = null;
     //Defaults
-    x = width/2; y = 50; rad = 50;
+    x = width/2; y = 50; rad = 25;
   }
   
   Node(int key, float x, float y){
@@ -23,7 +25,7 @@ class Node{
     r = null;
     
     //Defaults
-    this.x = x; this.y = y; rad = 1;
+    this.x = x; this.y = y; rad = 25;
   }
   
   public void pos(float x, float y){
