@@ -13,7 +13,7 @@ class Node{
   //Postion
   float x;
   float y;
-  float diam;
+  float diam = 50;
   
   //Display
   int col = #ffffff;
@@ -26,31 +26,49 @@ class Node{
     r = null;
     p = null;
     //Defaults
-    x = width/2; y = 50; diam = 50;
+    //x = width/2; y = 50; diam = 50;
   }
   
-  Node(int key, float x, float y){
-    this.key = key;
-    l = null;
-    r = null;
+  void update(){
+    if(this.p == null){ //Root
+      this.x = width/2;
+      this.y = 50;
+      return;
+    }
     
-    //Defaults
-    this.x = x; this.y = y; diam = 50;
+    int depth = getDepth(this);
+    int prevLayerElems = int(pow(2, depth-1)); //Will always be int
+    float prevSegmentWidth = (width)/prevLayerElems; //divide the width of the screen into equal parts for amnt of elems    
+    
+    if(this.p.r == this){
+      this.x = p.x + prevSegmentWidth/2;
+    } else{
+      this.x = p.x - prevSegmentWidth/2;
+    }
+    this.y = 50 + 50*depth + 10*(depth*(depth-1)/2); //Guass + Magic
+  }
+
+  void show(){
+    //Draw circle for each node
+    fill(this.col);
+    circle(this.x, this.y, this.diam);
+
+    // Display node key
+    fill(0);
+    textSize(this.diam/2);
+    textAlign(CENTER);
+    text(this.key, this.x, this.y+5); 
+  }
+  
+  int getDepth(Node node){
+    if(node == null)
+      return 0;
+    
+    return getDepth(node.p) + 1;
   }
   
   @Override
   public String toString(){
     return key + ": x = " + x + " y = " + y + "\n";
   }
-  
-  public void pos(float x, float y){
-    this.x = x; this.y = y;
-  }
-  
-  public void diam(int diam){
-    this.diam = diam;
-  }
-  
-  
-  
 }
