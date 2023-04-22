@@ -45,7 +45,7 @@ class Node{
     } else{
       this.x = p.x - prevSegmentWidth/2;
     }
-    this.y = 50 + 50*depth + 10*(depth*(depth-1)/2); //Guass + Magic
+    this.y = 50*(depth+1) + 10*(depth*(depth+1)/2); //Depth const + Guass offset
   }
 
   void show(){
